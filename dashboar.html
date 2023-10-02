@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Planta Solar</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+    <div class="header">
+        <h1>Dashboard de Planta Solar</h1>
+    </div>
+    <div class="data-container">
+
+        <div class="data-card">
+            <div><canvas id="dataChart" width="400" height="200"></canvas></div>
+            <p id="temperature">-- °C</p>
+        </div>
+        
+        <div class="data-card">
+            <h2>Humedad</h2>
+            <p id="humidity">-- %</p>
+        </div>
+        <div class="data-card">
+            <h2>Voltaje Generado</h2>
+            <p id="voltage">-- V</p>
+        </div>
+        <div class="data-card">
+            <h2>Consumo</h2>
+            <p id="consumption">-- W</p>
+        </div>
+        <div class="data-card">
+            <h2>Control</h2>
+            <p id="control">--</p>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+    <script src="update.js"></script>
+</body>
+
+</html>
