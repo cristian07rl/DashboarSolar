@@ -1,4 +1,3 @@
-// Referencia al elemento canvas y contexto
 const chartCanvas = document.getElementById('dataChart');
 const ctx = chartCanvas.getContext('2d');
 // Arreglos para almacenar los datos y etiquetas de tiempo
@@ -9,6 +8,7 @@ const voltageData = [];
 const consumptionData = [];
 const maxDataPoints = 6;
 function updateData() {
+    //"https://dashboarsolar-rxzu-dev.fl0.io/guardar_datos"
     fetch("http://localhost:3000/monitoreo")
         .then(function (response) {
             if (!response.ok) {
@@ -88,9 +88,6 @@ function updateChart() {
         temperatureData.shift();
     }
 }
-
-
-
 
 // Actualiza los datos cada 5 segundos
 setInterval(updateData, 5000);
