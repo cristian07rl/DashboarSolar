@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require("cors");
+const fs = require("fs")
 const app = express();
 // Habilita CORS para todas las rutas
 app.use(cors());
-const PORT = process.env.PORT ?? 80; // Puedes cambiar el puerto según tus preferencias
+const PORT = process.env.PORT ?? 3000; // Puedes cambiar el puerto según tus preferencias
 
 var temperature, humidity, voltage, consumption, Control;
 // Datos simulados de monitoreo de una planta solar
@@ -13,7 +14,7 @@ let solarData = {};
 // Configura el middleware body-parser para analizar las solicitudes POST
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//ruta main
+//ruta main para desplegar el html
 app.get('/', (req, res) => {
   // Lee el archivo HTML desde la misma carpeta que el script
   fs.readFile('dashboar.html', 'utf8', (err, data) => {
