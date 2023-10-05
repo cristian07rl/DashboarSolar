@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require("cors");
-const fs = require("fs")
+const path = require('path');
 const app = express();
 // Habilita CORS para todas las rutas
 app.use(cors());
@@ -12,8 +12,13 @@ let solarData = {};
 // Configura el middleware body-parser para analizar las solicitudes POST
 app.use(bodyParser.urlencoded({ extended: false }));
 
-//ruta main para desplegar el html
-
+// Define la ruta de acceso a tu archivo HTML
+const dashboardPath = path.join(__dirname, 'dashboar.html');
+app.use(express.static(__dirname));
+// Define una ruta para servir tu archivo HTML en la raíz del dominio
+app.get('/', (req, res) => {
+    res.sendFile(dashboardPath);
+});
 // Ruta para obtener los datos de monitoreo
 app.get('/monitoreo', (req, res) => {
     res.json(solarData);
@@ -45,4 +50,4 @@ app.post('/guardar_datos', (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`La API está escuchando en el puerto ${PORT}`);
-
+});
