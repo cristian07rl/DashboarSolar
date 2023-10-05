@@ -8,7 +8,44 @@
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
 
+        .header {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .data-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .data-card {
+            background-color: #f5f5f5;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 10px;
+            text-align: center;
+        }
+
+        .data-card h2 {
+            font-size: 20px;
+        }
+
+        .data-card p {
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
@@ -21,7 +58,7 @@
             <div><canvas id="dataChart" width="400" height="200"></canvas></div>
             <p id="temperature">-- °C</p>
         </div>
-        
+
         <div class="data-card">
             <h2>Humedad</h2>
             <p id="humidity">-- %</p>
@@ -41,7 +78,7 @@
 
     </div>
 
-    <script src="script.js"></script>
+    <!--- <script src="script.js"></script> --->
     <script src="update.js"></script>
 </body>
 

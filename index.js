@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require("cors");
-const fs = require("fs")
+const path = require('path');
 const app = express();
 // Habilita CORS para todas las rutas
 app.use(cors());
@@ -13,8 +13,8 @@ let solarData = {};
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Define la ruta de acceso a tu archivo HTML
-const dashboardPath = path.join(__dirname, 'dashboard.html');
-
+const dashboardPath = path.join(__dirname, 'dashboar.html');
+app.use(express.static(__dirname));
 // Define una ruta para servir tu archivo HTML en la raíz del dominio
 app.get('/', (req, res) => {
     res.sendFile(dashboardPath);
