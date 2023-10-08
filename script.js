@@ -21,7 +21,7 @@ function updateData() {
     //"https://dashboarsolar-rxzu-dev.fl0.io/guardar_datos"
 
     //"http://localhost:3000/guardar_datos"
-    fetch("http://localhost:3000/guardar_datos", {
+    fetch("https://dashboarsolar-rxzu-dev.fl0.io/guardar_datos", {
         method: "POST", // Método de la solicitud
         headers: {
             "Content-Type": "application/x-www-form-urlencoded" // Tipo de contenido (en este caso, datos codificados en URL)
