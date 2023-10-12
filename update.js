@@ -11,7 +11,7 @@ const Datapoints = 6
 function updateData () {
   // "https://dashboarsolar-rxzu-dev.fl0.io/monitoreo"
   // "http://localhost:3000/monitoreo"
-  fetch('http://localhost:3000/monitoreo')
+  fetch('https://dashboarsolar-rxzu-dev.fl0.io/monitoreo')
     .then(function (response) {
       if (!response.ok) {
         throw new Error('Error en la solicitud: ' + response.status)
