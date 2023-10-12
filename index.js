@@ -43,7 +43,7 @@ app.get('/monitoreo', (req, res) => {
   const selectQuery = `
         SELECT temperatura, humedad, voltaje, consumo, control, hora
         FROM lecturas_solar
-        ORDER BY hora ASC
+        ORDER BY hora DESC
         LIMIT 6; -- Obtener la última entrada
     `
 
