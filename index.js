@@ -44,9 +44,7 @@ app.get('/monitoreo', (req, res) => {
         SELECT temperatura, humedad, voltaje, consumo, control, hora
         FROM lecturas_solar
         ORDER BY hora DESC
-        LIMIT 6; -- Obtener la última entrada
-    `
-
+        LIMIT 6; -- Obtener la última entrada`
   pool.query(selectQuery, (err, result) => {
     if (err) {
       console.error('Error al obtener datos de monitoreo:', err)
