@@ -10,10 +10,10 @@ DHT dht(DHTPIN, DHTTYPE);
 int TEMPERATURE_THRESHOLD = 30.0;
 
 
-char* ssid = "Rafael2.4G";
-char* password = "12590288%AZ";
-String url = "https://dashboarsolar-rxzu-dev.fl0.io/guardar_datos";
-String host = "https://dashboarsolar-rxzu-dev.fl0.io/";
+char* ssid = "su red wifi";
+char* password = "su contraseña";
+String url = "su endpoint. ejemplo: https://miapi.com/guardar_datos";
+String host = "su host. ejemplo: https://miapi.com/";
 const int httpsPort = 8080;
 
 
