@@ -1,18 +1,18 @@
+import dbconect from './database.js'
 import express from 'express'
 import { Server } from 'socket.io'
 import { createServer } from 'node:http'
 import pg from 'pg'
 import path from 'node:path'
 const { Pool } = pg
-
 const pool = new Pool({
-  user: 'fl0user',
-  host: 'ep-summer-band-96974789.us-east-2.aws.neon.fl0.io',
-  database: 'SolarInstallation',
-  password: 'Eo02KZVYqIdh',
-  port: 5432,
+  user: dbconect.user,
+  host: dbconect.host,
+  database: dbconect.database,
+  password: dbconect.password,
+  port: 5432, // El puerto por defecto de PostgreSQL
   ssl: {
-    rejectUnauthorized: true
+    rejectUnauthorized: true // Esto habilita la verificación del certificado SSL
     // O bien, si tienes el certificado CA de tu servidor PostgreSQL:
     // ca: fs.readFileSync('/ruta/a/tu/certificado_ca.crt')
   }
@@ -20,6 +20,7 @@ const pool = new Pool({
 
 const PORT = process.env.PORT ?? 3000
 const app = express()
+app.use(express.json())
 const server = createServer(app)
 const io = new Server(server, {
   connectionStateRecovery: {}
@@ -62,6 +63,43 @@ io.on('connection', (socket) => {
         }
       }
     })
+  })
+})
+let solarData = {}
+app.post('/guardar_datos', (req, res) => {
+  const { temperatura, humedad, voltaje, consumo, control } = req.body
+  console.log(req.body)
+  // Puedes guardar los datos en una base de datos, en memoria, o hacer cualquier otra acción necesaria.
+  // En este ejemplo, solo mostraremos los datos en la consola.
+  solarData = {
+    temperatura: parseFloat(temperatura),
+    humedad: parseFloat(humedad),
+    voltaje: parseFloat(voltaje),
+    consumo: parseFloat(consumo),
+    control
+  }
+  console.log('Datos de monitoreo recibidos')
+  // Define los valores para la inserción dentro de esta función
+  const insertQuery = `
+        INSERT INTO lecturas_solar (temperatura, humedad, voltaje, consumo, control)
+        VALUES ($1, $2, $3, $4, $5)
+    `
+  const values = [
+    solarData.temperatura,
+    solarData.humedad,
+    solarData.voltaje,
+    solarData.consumo,
+    solarData.control
+  ]
+  console.log('value', values)
+  // Realiza la inserción en la base de datos
+  pool.query(insertQuery, values, (err, result) => {
+    if (err) {
+      console.error('Error al insertar datos:', err)
+    } else {
+      console.log('Datos insertados correctamente')
+      res.status(201).json(solarData)// Respuesta exitosa
+    }
   })
 })
 
